@@ -5,12 +5,14 @@ import Views.SystemView;
 import java.awt.JobAttributes;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
-public class CustomersController implements ActionListener{
+public class CustomersController implements ActionListener, MouseListener{
     
     //Encapsular Variables
     private Customers customer;
@@ -25,6 +27,8 @@ public class CustomersController implements ActionListener{
         this.views = views;
         //Boton Registrar Cliente "Escucha"
         this.views.btn_register_customer.addActionListener(this);
+        //Tabla
+        this.views.customer_table.addMouseListener(this);
     }
     
     
@@ -58,9 +62,45 @@ public class CustomersController implements ActionListener{
     public void listAllCustomers(){
         List<Customers>list = customersDao.listCustomersQuery(views.txt_search_customer.getText());
         model = (DefaultTableModel) views.customer_table.getModel();
+        Object[]row = new Object[5];
+        for(int i=0; i<list.size();i++){
+            row[0]=list.get(i).getId();
+            row[1]=list.get(i).getFull_name();
+            row[2]=list.get(i).getAddress();
+            row[3]=list.get(i).getTelephone();
+            row[4] = list.get(i).getEmail();
+            model.addRow(row);
+        }
+        views.customer_table.setModel(model);
         
         
-        
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if(e.getSource() == views.customers_table){
+            int row = views.customer_table.row
+        }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     

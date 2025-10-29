@@ -36,6 +36,7 @@ public class SystemView extends javax.swing.JFrame {
         employee_account.listAllEmployees();
         //Controlador de clientes
         CustomersController customer_account = new CustomersController(customer, customersDao,this);
+        customer_account.listAllCustomers();
     }
 
 
