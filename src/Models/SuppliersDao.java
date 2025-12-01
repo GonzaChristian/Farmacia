@@ -19,7 +19,7 @@ public class SuppliersDao {
     
     //Registrar Proveedor
     public boolean registerSuppliersQuery(Suppliers suppliers){
-        String query = "INSERT INTO suppliers(nombre,description,address,telephone,email,"
+        String query = "INSERT INTO suppliers(name,description,address,telephone,email,"
                 +"city,created,updated) VALUES (?,?,?,?,?,?,?,?)";
         Timestamp dateTime = new Timestamp (new Date().getTime());
         
@@ -47,8 +47,7 @@ public class SuppliersDao {
     public List listSuppliersQuery(String value){
         List <Suppliers> list_suppliers = new ArrayList();
         String query = "SELECT * FROM suppliers";
-        String query_search_suppliers = "SELECT * FROM suppliers WHERE"
-                +"name LIKE '%"+value+"%";
+        String query_search_suppliers = "SELECT * FROM suppliers WHERE name LIKE '%"+value+"%'";
         try{
             conn = cn.getConnection();
             if(value.equalsIgnoreCase("")){

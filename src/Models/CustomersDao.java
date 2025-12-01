@@ -75,9 +75,9 @@ public class CustomersDao {
     }
     
     //Modificar Cliente
-    public boolean updateCustomersQueryy(Customers customer){
-        String query = "UPDATE customers SET full name = ?,address =?,telephone=?,"
-                +"email=?, updated=?";
+    public boolean updateCustomersQuery(Customers customer){
+        String query = "UPDATE customers SET full_name = ?,address =?,telephone=?,"
+                +"email=?, updated=? WHERE  id=?";
         Timestamp dateTime = new Timestamp(new Date().getTime());
         try{
             conn = cn.getConnection();
@@ -114,6 +114,25 @@ public class CustomersDao {
             +"que tenga relacion con otra tabla"+e);
             return false;
         }
-        
     }
+    
+    public Customers searchCustomers(int id){
+        String query = "SELECT cu.id,cu.full_name FROM customers cu WHERE cu.id=?";
+        Customers customer = new Customers();
+        try{
+            conn = cn.getConnection();
+            pst = conn.prepareStatement(query);
+            pst.setInt(1,id);
+            rs = pst.executeQuery();
+            if(rs.next()){
+                customer.setId(rs.getInt("id"));
+                customer.setFull_name(rs.getString("full_name"));
+            }
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null,e.getMessage());
+        }
+        return customer;
+    }
+    
+    
 }

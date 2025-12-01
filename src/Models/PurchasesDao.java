@@ -39,9 +39,9 @@ public class PurchasesDao {
     //Registrar Detalles de la compra
     public boolean registerPurchaseDetailQuery(int purchase_id, double purchase_price,
             int purchase_amount, double purchase_subtotal, int product_id){
-        String query = "INSERT INTO purchases_details(purchase_id, purchase_price,"
-                + "purchase_amount, purchase_subtotal, purchase_date, purchase_id)"
-                + "VALUES(?,?,?,?,?,?)";
+        String query = "INSERT INTO purchase_details(purchase_id, purchase_price,"
+                + "purchase_amount, purchase_subtotal, product_id)"
+                + "VALUES(?,?,?,?,?)";
         Timestamp dateTime = new Timestamp(new Date().getTime());
         try{
             conn = cn.getConnection();
@@ -49,9 +49,8 @@ public class PurchasesDao {
             pst.setInt(1, purchase_id);
             pst.setDouble(2, purchase_price);
             pst.setInt(3, purchase_amount);
-            pst.setDouble(4, purchase_price);
-            pst.setTimestamp(5, dateTime);
-            pst.setInt(6, product_id);
+            pst.setDouble(4, purchase_subtotal);
+            pst.setInt(5, product_id);
             
             pst.execute();
             return true;
@@ -129,6 +128,7 @@ public class PurchasesDao {
                 purchases.setPurchase_subtotal(rs.getDouble("purchase_subtotal"));
                 purchases.setCreated(rs.getString("created"));
                 purchases.setPurchase(rs.getString("full_name"));
+                purchases.setSupplier_name_product(rs.getString("supplier_name"));
                 
                 list_purchases.add(purchases);
             }

@@ -19,8 +19,7 @@ public class ProductsDao {
     
     //Registrar productos
     public boolean registerProductsQuery(Products product){
-        String query = "INSERT INTO products (code,name,description, unit_price, created, updated,"
-                +"category_id VALUES(?,?,?,?,?,?,?)";
+        String query = "insert into products(code,name,description,unit_price, created, updated, category_id) values (?,?,?,?,?,?,?)";
         Timestamp dateTime = new Timestamp(new Date().getTime());
         try{
         conn = cn.getConnection();
@@ -68,7 +67,7 @@ public class ProductsDao {
                 product.setName(rs.getString("name"));
                 product.setDescription(rs.getString("description"));
                 product.setUnit_price(rs.getDouble("unit_price"));
-                product.setProduct_quantity(rs.getInt("products_quantity"));
+                product.setProduct_quantity(rs.getInt("product_quantity"));
                 product.setCategory_name(rs.getString("category_name"));
                 list_products.add(product);   
             }
@@ -83,7 +82,7 @@ public class ProductsDao {
     //Modificar productos
     public boolean updateProductQuery(Products product){
         String query = "UPDATE products SET code=?, name=?, description=?,"
-                + "unit_price=?, update=?, category_id=? WHERE id=?";
+                + "unit_price=?, updated=?, category_id=? WHERE id=?";
         Timestamp dateTime = new Timestamp(new Date().getTime());
         
         try{
@@ -154,7 +153,7 @@ public class ProductsDao {
     
     //Buscar producto por código
     public Products searchCode(int code){
-        String query = "select pro.id, pro.name from products pro where pro.code=?";
+        String query = "select pro.id, pro.name, pro.unit_price, pro.product_quantity from products pro where pro.code=?";
         Products product = new Products();
         try{
             conn=cn.getConnection();
@@ -164,7 +163,9 @@ public class ProductsDao {
             rs = pst.executeQuery();
             if(rs.next()){
                 product.setId(rs.getInt("id"));
-                product.setName(rs.getString("nombre"));
+                product.setName(rs.getString("name"));
+                product.setUnit_price(rs.getDouble("unit_price"));
+                product.setProduct_quantity(rs.getInt("product_quantity"));
             }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -173,7 +174,7 @@ public class ProductsDao {
     }
     
     //Traer la cantidad de productos
-    public Products searchIdProducts(int id){
+    public Products searchId(int id){
         String query = "SELECT pro.product_quantity from products pro where pro.id=?";
         Products product = new Products();
         try{
