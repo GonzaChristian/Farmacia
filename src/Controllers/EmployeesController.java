@@ -42,7 +42,8 @@ public class EmployeesController implements ActionListener, MouseListener, KeyLi
         this.views.btn_cancel_employee.addActionListener(this);
         //Boton de modificar password
         this.views.btn_modify_data.addActionListener(this);
-        
+        //Empleados JLabel
+        this.views.jLabelEmployes.addMouseListener(this);
     }
 
     

@@ -24,11 +24,13 @@ public class SettingsControllers implements MouseListener{
         this.views.jLabelSetting.addMouseListener(this);
         this.views.jLabelSales.addMouseListener(this);
         Profile();
-        
+       
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
+       
+      
     }
 
     @Override
@@ -102,6 +104,8 @@ public class SettingsControllers implements MouseListener{
     }
     
     private void Profile(){
+        //Clientes JLabel
+        this.views.jLabelCustomers.addMouseListener(this);
         this.views.txt_id_profile.setText(""+id_user);
         this.views.txt_name_profile.setText(full_name_user);
         this.views.txt_name_profile.setText(full_name_user);
