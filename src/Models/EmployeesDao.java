@@ -125,8 +125,8 @@ public class EmployeesDao {
             
             employee.setId(rs.getInt("id"));
             employee.setFull_name(rs.getString("full_name"));
-            employee.setFull_name(rs.getString("username"));
-            employee.setUsername(rs.getString("address"));
+            employee.setUsername(rs.getString("username"));
+            employee.setAddress(rs.getString("address"));
             employee.setAddress(rs.getString("address"));
             employee.setTelephone(rs.getString("telephone"));
             employee.setEmail(rs.getString("email"));

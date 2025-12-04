@@ -29,7 +29,7 @@ public class LoginController implements ActionListener{
         String user = login_view.txt_userName.getText().trim();
         String pass = String.valueOf(login_view.txt_password.getPassword());
         if(e.getSource() == login_view.btn_enter){
-            if (!user.equals("")|| !pass.equals("")){
+            if (!user.equals("") && !pass.equals("")){
                 employee = employees_dao.loginQuery(user, pass);
                 if(employee.getRol().equals("Administrador")){
                     SystemView admin = new SystemView();

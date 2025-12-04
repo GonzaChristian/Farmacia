@@ -72,7 +72,7 @@ public class SalesController implements ActionListener, MouseListener, KeyListen
             model.removeRow(views.sales_table.getSelectedRow());
             calculateSales();
             views.txt_sale_product_code.requestFocus();
-        }else if(!"".equals(e.getSource()== views.btn_add_product_sale)){
+        }else if(e.getSource() == views.btn_add_product_sale){
             int amount = Integer.parseInt(views.txt_sale_quantity.getText());
             String product_name = views.txt_sale_product_name.getText();
             double price = Double.parseDouble(views.txt_sale_price.getText());
