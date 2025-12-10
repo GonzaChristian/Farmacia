@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import Views.SystemView;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 public class SettingsControllers implements MouseListener{
     private SystemView views;
@@ -29,7 +30,9 @@ public class SettingsControllers implements MouseListener{
 
     @Override
     public void mouseClicked(MouseEvent e) {
-       
+         if(e.getSource() == views.jLabelSetting) {
+            views.jTabbedPane1.setSelectedIndex(8);
+        }
       
     }
 
